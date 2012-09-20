@@ -19,7 +19,10 @@ public class Main
 {
     public static void main(String... arg) throws Exception
     {
-        // Get the server port and create a server
+    	// for checking logs
+    	System.setProperty("org.eclipse.jetty.LEVEL","DEBUG");
+    	
+    	// Get the server port and create a server
         int port=arg.length>1?Integer.parseInt(arg[1]):8080;
         Server server = new Server(port);
 
@@ -29,7 +32,11 @@ public class Main
 
         // Create a resource handler for static content (eg index.html, chat.js, chat.css)
         ResourceHandler resourceHandler = new ResourceHandler();
-        resourceHandler.setBaseResource(Resource.newClassPathResource("com/example/docroot/"));
+        resourceHandler.setDirectoriesListed(true);
+        resourceHandler.setWelcomeFiles(new String[]{ "index.html" });
+        //Resource objr = Resource.newClassPathResource("classpath:/");
+        Resource objr = Resource.newResource("src/main/resources/com/example/docroot");
+        resourceHandler.setBaseResource(objr);
 
         // Create the default handler for all other requests
         DefaultHandler defaultHandler = new DefaultHandler();

@@ -100,10 +100,10 @@ public class ChatLoadClient implements WebSocket.OnTextMessage
         int mesgs=arg.length>3?Integer.parseInt(arg[3]):1000;
         
         WebSocketClient client = new WebSocketClient();
-        client.setBufferSize(4096);
+        //client.setBufferSize(4096);
         client.setMaxIdleTime(30000);
         client.setProtocol("chat");
-        client.start();
+        //client.start();
         
         // Create client serially
         long start=System.currentTimeMillis();
@@ -159,7 +159,7 @@ public class ChatLoadClient implements WebSocket.OnTextMessage
         
         System.err.printf("Closed %d connections to %s:%d in %dms\n",clients,host,port,(end-start));
      
-        client.stop();
+        //client.stop();
     }
     
 }
